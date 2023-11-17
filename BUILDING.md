@@ -108,10 +108,18 @@ You didn't clone the repository with symlinks enabled. Windows requires administ
 In an **administrator** terminal prompt navigate to the Skyline root project folder and run:
 ```cmd
 git submodule deinit app/libraries/shader-compiler
+git submodule deinit app/libraries/audio-core
 git config core.symlinks true
 git submodule foreach git config core.symlinks true
 git submodule update --init --recursive app/libraries/shader-compiler
+git submodule update --init --recursive app/libraries/audio-core
 ```
+以上代码是目录创建软链接，如果不能成功需要手动创建，以管理员的方式运行命令行：
+转到shader-compiler/include目录 删除里面的文件
+```cmd
+mklink /d shader_compiler ..
+```
+
 If you'd like to, you can enable symlinks globally by running: (this will only affect new repositories)
 ```cmd
 git config --global core.symlinks true
